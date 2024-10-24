@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>anılarımız..</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #f4f4f4, #b38080);
-    color: #333;
-}
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f4f4f4, #b38080);
+            color: #333;
+        }
 
         header {
             text-align: center;
             padding: 30px;
             background-color: #ffb6b6;
             color: #e60000;
-            font-size: 32px;
+            font-size: 24px;
             font-weight: bold;
         }
+
         .container {
             display: flex;
             flex-direction: column;
@@ -32,51 +34,54 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .month {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 0;
-            border-bottom: 2px solid #e60000;
-            position: relative;
+            flex-direction: column;
+            margin-bottom: 40px;
         }
+
         .month-title {
             width: 100%;
             text-align: center;
-            font-size: 28px;
+            font-size: 22px;
             color: #e60000;
             margin-bottom: 20px;
             font-weight: bold;
             text-transform: uppercase;
         }
+
         .photos {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            gap: 2%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
+
         .photo {
-            width: 48%;
+            width: 100%;
             margin-bottom: 20px;
             text-align: center;
             position: relative;
         }
+
         img {
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .text-box {
             margin-top: 15px;
-            padding: 15px;
+            padding: 10px;
             border: 2px solid #e60000;
             border-radius: 8px;
             background-color: #fff;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            font-size: 16px;
+            font-size: 14px;
             color: #333;
+            width: 100%;
         }
+
         footer {
             text-align: center;
             padding: 25px;
@@ -85,22 +90,7 @@
             font-size: 18px;
             border-top: 2px solid #e60000;
         }
-        .body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #f4f4f4, #ffe6e6);
-            color: #333;
-            position: relative;
-        }
-        .header {
-            text-align: center;
-            padding: 30px;
-            background-color: #ffb6b6;
-            color: #e60000;
-            font-size: 32px;
-            font-weight: bold;
-        }
+
         .love-counter {
             position: fixed;
             top: 20px;
@@ -113,6 +103,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             z-index: 100;
         }
+
         .time-counter {
             position: fixed;
             bottom: 20px;
@@ -121,80 +112,102 @@
             color: #9e9e9e;
             padding: 10px 20px;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             z-index: 100;
         }
-        .text-content {
-            background-color: #fff; /* Kutu arka plan rengi */
-            padding: 20px; /* İç boşluk */
-            border-radius: 10px; /* Kenar yuvarlama */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Gölge efekti */
-            text-align: center; /* Metni ortala */
-            font-size: 10em; /* Font boyutu */
-            color: #333; /* Metin rengi */
-    
-            .infinity-symbol {
-            color: #e91e63; /* Sonsuzluk sembolü rengi */
-            font-size: 5em; /* Sonsuzluk sembolü boyutu */
+
+        @media (max-width: 768px) {
+            .photos {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                font-size: 20px;
+            }
+
+            .month-title {
+                font-size: 18px;
+            }
+
+            .love-counter,
+            .time-counter {
+                font-size: 14px;
+            }
         }
-}
-       
 
+        @media (max-width: 480px) {
+            header {
+                font-size: 18px;
+                padding: 20px;
+            }
 
+            .month-title {
+                font-size: 16px;
+            }
+
+            .love-counter,
+            .time-counter {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-<header>
-    <h1>❤︎Sevgilimle Anılarımız❤︎ </h1>
-</header>
-<!-- Sevgi Sayacı -->
-<div class="love-counter" id="love-counter">
-    Seni Ne Kadar Seviyorum: <span id="counter-value">0</span>
-</div>
+    <header>
+        <h1>❤︎Sevgilimle Anılarımız❤︎</h1>
+    </header>
+    <!-- Sevgi Sayacı -->
+    <div class="love-counter" id="love-counter">
+        Seni Ne Kadar Seviyorum: <span id="counter-value">0</span>
+    </div>
 
-<script>
-    let loveCount = 0; // Başlangıç değeri
-    const counterElement = document.getElementById("counter-value");
+    <script>
+        let loveCount = 0; // Başlangıç değeri
+        const counterElement = document.getElementById("counter-value");
 
-    function increaseCounter() {
-        loveCount++; // Sayacı 1 artır
-        counterElement.textContent = loveCount; // Güncellenmiş değeri göster
-    }
+        function increaseCounter() {
+            loveCount++; // Sayacı 1 artır
+            counterElement.textContent = loveCount; // Güncellenmiş değeri göster
+        }
 
-    // Her saniyede bir sayacı artır
-    setInterval(increaseCounter, 10);
-</script>
-<script>
-    function updateTimeCounter() {
-        const startDate = new Date("2022-10-28T00:00:00"); // Başlangıç tarihi
-        const now = new Date(); // Şu anki tarih ve saat
+        // Her saniyede bir sayacı artır
+        setInterval(increaseCounter, 10);
+    </script>
 
-        // Zaman farkını hesapla (milisaniye cinsinden)
-        const timeDiff = now - startDate;
+    <script>
+        function updateTimeCounter() {
+            const startDate = new Date("2022-10-28T00:00:00"); // Başlangıç tarihi
+            const now = new Date(); // Şu anki tarih ve saat
 
-        // Milisaniyeden yıla, aya, güne ve saate çevirme
-        const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365.25));
-        const months = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
-        const days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            // Zaman farkını hesapla (milisaniye cinsinden)
+            const timeDiff = now - startDate;
 
-        // Sonucu göster
-        document.getElementById("time-diff").textContent = `${years} yıl, ${months} ay, ${days} gün, ${hours} saat`;
-    }
+            // Milisaniyeden yıla, aya, güne ve saate çevirme
+            const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365.25));
+            const months = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            const days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-    // Sayaç her saniyede bir güncellensin
-    setInterval(updateTimeCounter, 1000);
+            // Sonucu göster
+            document.getElementById("time-diff").textContent = `${years} yıl, ${months} ay, ${days} gün, ${hours} saat`;
+        }
 
-    // Sayfa yüklendiğinde hemen başlat
-    updateTimeCounter();
-</script>
-<div class="time-counter" id="time-counter">
-     <span id="time-diff"></span>
-</div>
+        // Sayaç her saniyede bir güncellensin
+        setInterval(updateTimeCounter, 1000);
 
-<div class="container">
+        // Sayfa yüklendiğinde hemen başlat
+        updateTimeCounter();
+    </script>
+
+    <div class="time-counter" id="time-counter">
+        <span id="time-diff"></span>
+    </div>
+
+    <div class="container">
     <!-- 2022 Ekim -->
     <div class="month">
         <h2 class="month-title">2022 Ekim</h2>
