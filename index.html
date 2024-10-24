@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anılarımız..</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f4f4f4, #b38080);
+    color: #333;
+}
+
+        header {
+            text-align: center;
+            padding: 30px;
+            background-color: #ffb6b6;
+            color: #e60000;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1200px;
+            background-color: #fff;
+            border-top: 4px solid #e60000;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .month {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #e60000;
+            position: relative;
+        }
+        .month-title {
+            width: 100%;
+            text-align: center;
+            font-size: 28px;
+            color: #e60000;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .photos {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 2%;
+        }
+        .photo {
+            width: 48%;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .text-box {
+            margin-top: 15px;
+            padding: 15px;
+            border: 2px solid #e60000;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: #333;
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #ffb6b6;
+            color: #e60000;
+            font-size: 18px;
+            border-top: 2px solid #e60000;
+        }
+        .body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f4f4f4, #ffe6e6);
+            color: #333;
+            position: relative;
+        }
+        .header {
+            text-align: center;
+            padding: 30px;
+            background-color: #ffb6b6;
+            color: #e60000;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .love-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            color: #e60000;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        .time-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #66385b;
+            color: #9e9e9e;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        .text-content {
+            background-color: #fff; /* Kutu arka plan rengi */
+            padding: 20px; /* İç boşluk */
+            border-radius: 10px; /* Kenar yuvarlama */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+            text-align: center; /* Metni ortala */
+            font-size: 10em; /* Font boyutu */
+            color: #333; /* Metin rengi */
+    
+            .infinity-symbol {
+            color: #e91e63; /* Sonsuzluk sembolü rengi */
+            font-size: 5em; /* Sonsuzluk sembolü boyutu */
+        }
+}
+       
+
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>❤︎Sevgilimle Anılarımız❤︎ </h1>
+</header>
+<!-- Sevgi Sayacı -->
+<div class="love-counter" id="love-counter">
+    Seni Ne Kadar Seviyorum: <span id="counter-value">0</span>
+</div>
+
+<script>
+    let loveCount = 0; // Başlangıç değeri
+    const counterElement = document.getElementById("counter-value");
+
+    function increaseCounter() {
+        loveCount++; // Sayacı 1 artır
+        counterElement.textContent = loveCount; // Güncellenmiş değeri göster
+    }
+
+    // Her saniyede bir sayacı artır
+    setInterval(increaseCounter, 10);
+</script>
+<script>
+    function updateTimeCounter() {
+        const startDate = new Date("2022-10-28T00:00:00"); // Başlangıç tarihi
+        const now = new Date(); // Şu anki tarih ve saat
+
+        // Zaman farkını hesapla (milisaniye cinsinden)
+        const timeDiff = now - startDate;
+
+        // Milisaniyeden yıla, aya, güne ve saate çevirme
+        const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365.25));
+        const months = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+        const days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+        // Sonucu göster
+        document.getElementById("time-diff").textContent = `${years} yıl, ${months} ay, ${days} gün, ${hours} saat`;
+    }
+
+    // Sayaç her saniyede bir güncellensin
+    setInterval(updateTimeCounter, 1000);
+
+    // Sayfa yüklendiğinde hemen başlat
+    updateTimeCounter();
+</script>
+<div class="time-counter" id="time-counter">
+     <span id="time-diff"></span>
+</div>
+
+<div class="container">
+    <!-- 2022 Ekim -->
+    <div class="month">
+        <h2 class="month-title">2022 Ekim</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto1.jpg') }}" alt="Fotoğraf 1">
+                <textarea class="text-box" rows="2" placeholder="İlk tanıştığımız gün <3"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto2.jpg') }}" alt="Fotoğraf 2">
+                <textarea class="text-box" rows="2" placeholder="askimla bakıımmm vakti "></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2022 Kasım -->
+    <div class="month">
+        <h2 class="month-title">2022 Kasım</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto3.jpg') }}" alt="Fotoğraf 3">
+                <textarea class="text-box" rows="2" placeholder="biraz utangacız"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto4.jpg') }}" alt="Fotoğraf 4">
+                <textarea class="text-box" rows="2" placeholder="askimin kirmizi sacı ve benim kalın giyiniş"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2022 Aralık -->
+    <div class="month">
+        <h2 class="month-title">2022 Aralık</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto5.jpg') }}" alt="Fotoğraf 5">
+                <textarea class="text-box" rows="2" placeholder="askim ve ev arkadaslarının cektigi o fotograf"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto6.jpg') }}" alt="Fotoğraf 6">
+                <textarea class="text-box" rows="2" placeholder="ilk yılbasımızzz.."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Ocak -->
+    <div class="month">
+        <h2 class="month-title">2023 Ocak</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto7.jpg') }}" alt="Fotoğraf 7">
+                <textarea class="text-box" rows="2" placeholder="günes teninde güzeell"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto8.jpg') }}" alt="Fotoğraf 8">
+                <textarea class="text-box" rows="2" placeholder="ilk burun yaptırma fikrinin çıktığı gün"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Şubat -->
+    <div class="month">
+        <h2 class="month-title">2023 Şubat</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto9.jpg') }}" alt="Fotoğraf 9">
+                <textarea class="text-box" rows="2" placeholder="askimin dgsiii <333"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto10.jpg') }}" alt="Fotoğraf 10">
+                <textarea class="text-box" rows="2" placeholder="askimin bana yaptıgı dg pastasiii"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Mart -->
+    <div class="month">
+        <h2 class="month-title">2023 Mart</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto11.jpg') }}" alt="Fotoğraf 11">
+                <textarea class="text-box" rows="2" placeholder="dar pantul ve benim dötüm "></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto12.jpg') }}" alt="Fotoğraf 12">
+                <textarea class="text-box" rows="2" placeholder="askimla ilk uzak kalışımız :((()))"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Nisan -->
+    <div class="month">
+        <h2 class="month-title">2023 Nisan</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto13.jpg') }}" alt="Fotoğraf 13">
+                <textarea class="text-box" rows="2" placeholder="hala uzağız ondan yan yana fotomuz yok :()"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto14.jpg') }}" alt="Fotoğraf 14">
+                <textarea class="text-box" rows="2" placeholder="ben ve burnumla karıma kavustukk"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Mayıs -->
+    <div class="month">
+        <h2 class="month-title">2023 Mayıs</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto15.jpg') }}" alt="Fotoğraf 15">
+                <textarea class="text-box" rows="2" placeholder="yine bi otogar :()"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto16.jpg') }}" alt="Fotoğraf 16">
+                <textarea class="text-box" rows="2" placeholder="bizim kombin saka mııı"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Haziran -->
+    <div class="month">
+        <h2 class="month-title">2023 Haziran</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto17.jpg') }}" alt="Fotoğraf 17">
+                <textarea class="text-box" rows="2" placeholder="bu seksiliğimiz neeeğğğ"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto18.jpg') }}" alt="Fotoğraf 18">
+                <textarea class="text-box" rows="2" placeholder="burnumaaa ve karıma focusss"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Temmuz -->
+    <div class="month">
+        <h2 class="month-title">2023 Temmuz</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto19.jpg') }}" alt="Fotoğraf 19">
+                <textarea class="text-box" rows="2" placeholder="ilk konserimizzz"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto20.jpg') }}" alt="Fotoğraf 20">
+                <textarea class="text-box" rows="2" placeholder="karımında burnu yapılmalı mı kontrol ediyoruzz"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Ağustos -->
+    <div class="month">
+        <h2 class="month-title">2023 Ağustos</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto21.jpg') }}" alt="Fotoğraf 21">
+                <textarea class="text-box" rows="2" placeholder="sincap ısırma operasyonu"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto22.jpg') }}" alt="Fotoğraf 22">
+                <textarea class="text-box" rows="2" placeholder="askimlaa duşşş"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Eylül -->
+    <div class="month">
+        <h2 class="month-title">2023 Eylül</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto23.jpg') }}" alt="Fotoğraf 23">
+                <textarea class="text-box" rows="2" placeholder="benim manzaramm <333"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto24.jpg') }}" alt="Fotoğraf 24">
+                <textarea class="text-box" rows="2" placeholder="piksel ama değerli foto"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Ekim -->
+    <div class="month">
+        <h2 class="month-title">2023 Ekim</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto25.jpg') }}" alt="Fotoğraf 25">
+                <textarea class="text-box" rows="2" placeholder="yine janti çıkmışız askiimm"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto26.jpg') }}" alt="Fotoğraf 26">
+                <textarea class="text-box" rows="2" placeholder="karımı ereğlide ziyareett"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Kasım -->
+    <div class="month">
+        <h2 class="month-title">2023 Kasım</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto27.jpg') }}" alt="Fotoğraf 27">
+                <textarea class="text-box" rows="2" placeholder="güzel kızııım"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto28.jpg') }}" alt="Fotoğraf 28">
+                <textarea class="text-box" rows="2" placeholder="şu tatlılığımız şaka mııı"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2023 Aralık -->
+    <div class="month">
+        <h2 class="month-title">2023 Aralık</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto29.jpg') }}" alt="Fotoğraf 29">
+                <textarea class="text-box" rows="2" placeholder="bir takım insanları kıskandırdığımız foto :)))"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto30.jpg') }}" alt="Fotoğraf 30">
+                <textarea class="text-box" rows="2" placeholder="bowling hehehe"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2024 Ocak -->
+    <div class="month">
+        <h2 class="month-title">2024 Ocak</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto31.jpg') }}" alt="Fotoğraf 31">
+                <textarea class="text-box" rows="2" placeholder="karımm ve fenerbahceemm<3"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto32.jpg') }}" alt="Fotoğraf 32">
+                <textarea class="text-box" rows="2" placeholder="MASALLAAH BİZE <3<3<3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2024 Şubat -->
+    <div class="month">
+        <h2 class="month-title">2024 Şubat</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto33.jpg') }}" alt="Fotoğraf 33">
+                <textarea class="text-box" rows="2" placeholder="lahmacunyedik ve HEPSİNİ BİTİRDİ :("></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto34.jpg') }}" alt="Fotoğraf 34">
+                <textarea class="text-box" rows="2" placeholder="pizza date <3<3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2024 Mart -->
+    <div class="month">
+        <h2 class="month-title">2024 Mart</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto35.jpg') }}" alt="Fotoğraf 35">
+                <textarea class="text-box" rows="2" placeholder="benim en sevdiğim fotoğraflarımızdan biri <3"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto36.jpg') }}" alt="Fotoğraf 36">
+                <textarea class="text-box" rows="2" placeholder=" tantuni dateee ve tavşanıımmm "></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2024 Nisan -->
+    <div class="month">
+        <h2 class="month-title">2024 Nisan</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto37.jpg') }}" alt="Fotoğraf 37">
+                <textarea class="text-box" rows="2" placeholder="disco disco partizaniiii"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto38.jpg') }}" alt="Fotoğraf 38">
+                <textarea class="text-box" rows="2" placeholder="karım, kardeşim ve ben <3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2024 Mayıs -->
+    <div class="month">
+        <h2 class="month-title">2024 Mayıs</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto39.jpg') }}" alt="Fotoğraf 39">
+                <textarea class="text-box" rows="2" placeholder="pofuduk kombinimiizz"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto40.jpg') }}" alt="Fotoğraf 40">
+                <textarea class="text-box" rows="2" placeholder="benzerliğimiz <3<3 ""></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2024 Haziran -->
+    <div class="month">
+        <h2 class="month-title">2024 Haziran</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto41.jpg') }}" alt="Fotoğraf 41">
+                <textarea class="text-box" rows="2" placeholder="şu coolluğumuzzz <333"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto42.jpg') }}" alt="Fotoğraf 42">
+                <textarea class="text-box" rows="2" placeholder="askimi ham yaparım"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2024 Temmuz -->
+    <div class="month">
+        <h2 class="month-title">2024 Temmuz</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto43.jpg') }}" alt="Fotoğraf 43">
+                <textarea class="text-box" rows="2" placeholder="ilk gittiğimiz macımızz"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto44.jpg') }}" alt="Fotoğraf 44">
+                <textarea class="text-box" rows="2" placeholder="şansım sayesinde karımı derbiye götürdüümm"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2024 Ağustos -->
+    <div class="month">
+        <h2 class="month-title">2024 Ağustos</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto45.jpg') }}" alt="Fotoğraf 45">
+                <textarea class="text-box" rows="2" placeholder="galataya çıkamadık ama bizde evlenicezzz"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto46.jpg') }}" alt="Fotoğraf 46">
+                <textarea class="text-box" rows="2" placeholder="kaybetmiştik ama olsun alışkınız :("></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2024 Eylül -->
+    <div class="month">
+        <h2 class="month-title">2024 Eylül</h2>
+        <div class="photos">
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto47.jpg') }}" alt="Fotoğraf 47">
+                <textarea class="text-box" rows="2" placeholder="kombinimiz muazzaaamm"></textarea>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename='foto48.jpg') }}" alt="Fotoğraf 48">
+                <textarea class="text-box" rows="2" placeholder="askimin annemle tanıştığı gün <3"></textarea>
+            </div>
+        </div>
+    </div>
+
+   <!-- 2024 Ekim -->
+<div class="month">
+    <h2 class="month-title">2024 Ekim</h2>
+    <div class="text-content">
+        DAHA NİCE BİRLİKTE ANILARIMIZ OLSUN
+        SENİ ÇOK SEVİYORUM ❤︎ <span class="infinity-symbol">&#x221E;</span>
+    </div>
+    <div class="text-content"></div>
+    devamı gelecek...
+</div>
+
+
+
+</body>
+</html>
