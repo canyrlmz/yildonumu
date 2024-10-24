@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -54,12 +54,10 @@
             display: flex;
             justify-content: space-between;
             width: 100%;
-            
-            flex-direction: column;
-            gap: 20px;
+            gap: 2%;
         }
         .photo {
-            width: 100%;
+            width: 48%;
             margin-bottom: 20px;
             text-align: center;
             position: relative;
@@ -76,7 +74,7 @@
             border-radius: 8px;
             background-color: #fff;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            font-size: 14px;
+            font-size: 16px;
             color: #333;
         }
         footer {
@@ -183,7 +181,7 @@
         const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
         // Sonucu göster
-        document.getElementById("time-diff").textContent = `${years} yıl, ${months} ay, ${days} gün, ${hours} saat`;
+        document.getElementById("time-diff").textContent = ${years} yıl, ${months} ay, ${days} gün, ${hours} saat;
     }
 
     // Sayaç her saniyede bir güncellensin
